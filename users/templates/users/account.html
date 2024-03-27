@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Личный кабинет | Диван</title>
+    <link rel="shortcut icon" href="{% static 'main/img/menu/logo_mini.png' %}" type="image/png">
+
+    <link rel="stylesheet" href="{% static 'main/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/fonts.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    {% include 'main/header.html' %}
+
+    <main>
+        <div class="block_info">
+            <h1 class="block_info_header">{{ user.first_name }} {{ user.last_name }} {{ user.patronymic }}</h1>
+            <p class="block_info_text">Город: {{ user.city }}</p>
+            <p class="block_info_text">Почта: {{ user.email }}</p>
+            <p class="block_info_text">Телефон: {{ user.tel }}</p>
+            <p class="block_info_text">Дата рождения: {{ user.dob }}</p>
+            <p class="block_info_text">Логин: {{ user.username }}</p>
+
+            <h1 class="block_info_text">Хобби:</h1>
+            {% for hobby in user.hobbys.all %}
+                <p class="block_info_text">{{ hobby }}</p>
+            {% endfor %}
+
+            <a class="button_sing_out" href="/user/sign-out/">Выйти</a>
+
+            <p class="block_info_text">Спасибо за регестрацию!</p>
+        </div>
+    </main>
+
+</body>
+</html>
